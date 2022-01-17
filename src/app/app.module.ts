@@ -1,25 +1,27 @@
-import { HomePage } from './TodoComponent/HomePage/todo.home';
-import { TodoList } from './TodoComponent/todo.list';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { TodoComponent } from "./TodoComponent/todo.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TodoCreate } from './todo-create/todo-create.component';
+import { TodoList } from './TodoComponent/todo.list';
+import { FormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent,
     TodoList,
-    HomePage
+    TodoCreate
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
