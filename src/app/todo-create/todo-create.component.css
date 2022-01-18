@@ -1,3 +1,38 @@
 .heading{
   text-align: center;
 }
+.name{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.name label{
+  font-size: 20px;
+  padding-right: 10px;
+}
+.name input{
+  width: 250px;
+  height: 35px;
+  border-radius: 5px;
+  border-color: black;
+}
+.task label{
+  font-size: 20px;
+  padding-right: 23px;
+}
+.task input{
+  width: 250px;
+  height: 35px;
+  border-radius: 5px;
+  border-color: black;
+}
+.btn{
+  margin-top: 10px;
+  margin-left: 50px;
+}
+.btn .add-btn{
+  width: 120px;
+  background-color: rgb(25, 211, 218);
+  border-radius: 5px;
+  color: brown;
+  font-weight: bold;
+}

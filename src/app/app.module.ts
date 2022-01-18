@@ -7,14 +7,14 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TodoCreate } from './todo-create/todo-create.component';
-import { TodoList } from './TodoComponent/todo.list';
 import { FormsModule } from '@angular/forms'
+import { TodoDisplay } from './todo-display/todo-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoList,
-    TodoCreate
+    TodoCreate,
+    TodoDisplay
   ],
   imports: [
     BrowserModule,
