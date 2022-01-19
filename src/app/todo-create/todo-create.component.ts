@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TodoService } from '../services/todo.service';
 @Component({
     selector: 'app-profile-editor',
@@ -8,23 +8,26 @@ import { TodoService } from '../services/todo.service';
   })
 
 export class TodoCreate {
-       profileForm: any;
-       todo = '';
+       profileForm: FormGroup;
+       isSubmitted: boolean;
        
-       constructor(public todoService: TodoService) { }
-       ngOnInit(): void {
-        this.profileForm = new FormGroup({
-          name: new FormControl(this.profileForm.name, [
-            Validators.required
-          ]),
-        });
-      }
-      onSubmit(){
-        this.todoService.addTodo(this.todo);
-        this.todo = '';
-      }
+       constructor(
+         private fb :FormBuilder,
+         public todoService :TodoService
+       ) { 
+         this.isSubmitted=false;
+         this.profileForm=this.fb.group({
+           title : ['',[Validators.required]],
+         });
+       }
       
-      get name() { return this.profileForm.get('name'); }
-
-     
-}
+      onSubmit(value: string){
+        console.log(value,this.profileForm);
+        this.isSubmitted = true;
+        if(!this.profileForm.invalid){
+          this.todoService.addTodo(value);
+         this.isSubmitted =false;
+        }
+        
+      }
+       }

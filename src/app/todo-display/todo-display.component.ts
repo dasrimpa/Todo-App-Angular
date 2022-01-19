@@ -10,17 +10,16 @@ import { Todo } from '../interface/Todo';
 export class TodoDisplay implements OnInit {
 
    @Input() todoInput: Todo | undefined;
-   todo: Todo | undefined;
+   todoList: Todo[] =[];
    toasterService: any;
  
    constructor(public todoService: TodoService) { }
  
    ngOnInit(): void {
-     
+     this.todoList=this.todoService.todoList;
    }
  
    deleteTodo(item: Todo) {
-     this.todo = item;
      this.todoService.deleteTodo(item);
      this.toasterService.error(`Todo ${item.id} Deleted!`, 'Deleted Successfully');
    }

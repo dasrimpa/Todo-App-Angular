@@ -1,18 +1,17 @@
 <div class="heading">
   <h1>Todo Create</h1>
-   <form [formGroup]="profileForm" #addTodo="ngForm" (submit)="onSubmit()">
+   <form [formGroup]="profileForm" (submit)="onSubmit(profileForm.value)">
      <div class="name">
     <label for="name">Task Name: </label>
-    <input id="name" type="text" formControlName="firstName" required />
-    <div *ngIf="name.invalid && (name.dirty || name.touched)"
-    class="alert alert-danger">
-  <div *ngIf="name.errors?.['required']">
-    Name is required.
+    <input id="name" type="text" formControlName="title">
+    <div *ngIf="profileForm.controls['title'].invalid && profileForm.controls['title'].touched" class="alert alert-danger">
+      <div *ngIf="profileForm.controls['title'].errors?.['required']">
+     Input field required
+    </div>
   </div>
-</div>
   </div>
     <div class="btn">
-    <button class="add-btn">
+    <button class="add-btn" [disabled]="!profileForm.valid">
     ADD TASK
 </button>
 </div>

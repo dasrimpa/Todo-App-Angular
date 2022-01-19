@@ -25,13 +25,13 @@ export class TodoService {
     this.todoList.splice(index, 1);
   }
 
-  addTodo(title: string) {
+  addTodo(title:string) {
     let id = this.todoList.length + 2;
-    const item: Todo = {
+    const todo: Todo = {
       id: id,
       isCompleted: false,
-      title: title
+       title:title
     }
-    this.todoList.unshift(item);
+    this.todoList.push(todo);
   }
 }
