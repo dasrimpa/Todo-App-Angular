@@ -6,7 +6,6 @@ import { Todo } from '../interface/Todo';
 })
 
 export class TodoService {
-  [x: string]: any;
 
   todoList: Todo[] = [
     {

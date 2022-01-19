@@ -16,6 +16,7 @@ export class TodoDisplay implements OnInit {
    constructor(public todoService: TodoService) { }
  
    ngOnInit(): void {
+     
    }
  
    deleteTodo(item: Todo) {
