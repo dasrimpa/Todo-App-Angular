@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Todo } from '../interface/Todo';
 import { TodoService } from '../services/todo.service';
 @Component({
     selector: 'app-profile-editor',
@@ -21,13 +22,17 @@ export class TodoCreate {
          });
        }
       
-      onSubmit(value: string){
+      onSubmit(value: Todo){
         console.log(value,this.profileForm);
         this.isSubmitted = true;
         if(!this.profileForm.invalid){
-          this.todoService.addTodo(value);
+          this.todoService.addTodo(this.profileForm.value.title);
+          localStorage.setItem('myData', this.profileForm.value.title);
+          
          this.isSubmitted =false;
         }
+        return localStorage.getItem('myData')
         
       }
+
        }

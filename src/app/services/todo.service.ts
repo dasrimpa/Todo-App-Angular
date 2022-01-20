@@ -20,18 +20,13 @@ export class TodoService {
     },
   ];
 
-  deleteTodo(item: Todo) {
-    let index = this.todoList.indexOf(item);
-    this.todoList.splice(index, 1);
-  }
-
   addTodo(title:string) {
     let id = this.todoList.length + 2;
-    const todo: Todo = {
-      id: id,
+    const item: Todo = {
+      id: Math.floor(Math.random() * 1000),
       isCompleted: false,
        title:title
     }
-    this.todoList.push(todo);
+    this.todoList.push(item);
   }
 }
