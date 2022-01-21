@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TodoService } from '../services/todo.service';
 import { Todo } from '../interface/Todo';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-list',
@@ -23,13 +22,6 @@ export class TodoDisplay implements OnInit {
   deleteTodo(id:number){  
     this.todoList = this.todoList.filter((value , i) => i !==id);
   }  
-  editTodo(i: number){
-    let title = this.todoList[i].title;
-    let result = prompt("Edit Todo", title);
-    if (result !== null){
-      this.todoList[i].title = result;
-    }
-  }
    
    }
 

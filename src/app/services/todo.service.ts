@@ -29,4 +29,15 @@ export class TodoService {
     }
     this.todoList.push(item);
   }
+    updateTodo(i: number){
+    let title = this.todoList[i].title;
+    let result = title;
+    if (result !== null){
+      this.todoList[i].title = result;
+    }
+  }
+  getCurrentData(id:number){
+    let data = this.todoList[id];
+  }
+  
 }
