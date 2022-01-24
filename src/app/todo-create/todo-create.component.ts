@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Todo } from '../interface/Todo';
 import { TodoService } from '../services/todo.service';
 @Component({
@@ -12,7 +12,8 @@ import { TodoService } from '../services/todo.service';
 export class TodoCreate {
        profileForm: FormGroup;
        isSubmitted: boolean;
-  i: any;
+       i: any;
+       id: string | null | undefined;
        
        constructor(
          private fb :FormBuilder,
@@ -36,14 +37,16 @@ export class TodoCreate {
          this.router.navigate(['../displaytodo']);
         }
       }
-      ngOnInit():void{
-        console.log(this.route.snapshot.params['id'])
-this.todoService.getCurrentData(this.route.snapshot.params['id']).subscribe ((result: any)=>{
-this.profileForm =new FormGroup({
-  title: new FormGroup(result['title'])
-  
-})
-    })
+      ngOnInit() {
+        console.log(this.route.snapshot.params['id']);
+       let result= this.todoService.getCurrentData(this.route.snapshot.params['id']);
+       console.log(result);
+       
+      }
 
-       }
+      setControlValue(control: string, value: string) {
+        this.profileForm.patchValue({
+          [control]: value
+        });
+      }
       }

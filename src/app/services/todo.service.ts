@@ -6,6 +6,7 @@ import { Todo } from '../interface/Todo';
 })
 
 export class TodoService {
+  [x: string]: any;
 
   todoList: Todo[] = [
     {
@@ -36,8 +37,8 @@ export class TodoService {
       this.todoList[i].title = result;
     }
   }
-  getCurrentData(id:number){
-    let data = this.todoList[id];
+  getCurrentData(id:number) {
+     this.todoList[id];
   }
   
 }
