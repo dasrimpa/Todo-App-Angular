@@ -12,7 +12,6 @@ import { TodoService } from '../services/todo.service';
 export class TodoCreate {
        profileForm: FormGroup;
        isSubmitted: boolean;
-       i: any;
        id: string | null | undefined;
        
        constructor(
@@ -44,9 +43,9 @@ export class TodoCreate {
        
       }
 
-      setControlValue(control: string, value: string) {
-        this.profileForm.patchValue({
-          [control]: value
-        });
-      }
+      // setControlValue(control: string, value: string) {
+      //   this.profileForm.patchValue({
+      //     [control]: value
+      //   });
+      // }
       }
