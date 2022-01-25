@@ -1,3 +1,4 @@
+import { Todo } from './../interface/Todo';
 import { Injectable } from '@angular/core';
 import { Todo } from '../interface/Todo';
 
@@ -6,7 +7,6 @@ import { Todo } from '../interface/Todo';
 })
 
 export class TodoService {
-  [x: string]: any;
 
   todoList: Todo[] = [
     {
@@ -14,15 +14,17 @@ export class TodoService {
       title: 'Task 1',
       isCompleted: false,
     },
+
     {
       id: 2,
       title: 'Task 2',
       isCompleted: false,
     },
   ];
+  title: any;
 
   addTodo(title:string) {
-    let id = this.todoList.length + 2;
+    let id = this.todoList;
     const item: Todo = {
       id: Math.floor(Math.random() * 1000),
       isCompleted: false,
@@ -30,18 +32,18 @@ export class TodoService {
     }
     this.todoList.push(item);
   }
-  updateTodo(i: number){
-    let title = this.todoList[i].title;
+  updateTodo(id: number){
+    let title = this.todoList[id].title;
     let result = title;
     if (result !== null){
-      this.todoList[i].title = result;
+      this.todoList[id].title = result;
     }
-    this['profileForm'].patchValue({
-      id: this['title'][i].id,
-    });
   }
   getCurrentData(id:number) {
-     this.todoList[id];
+  //   // return this.todoList.find();
+  const getitem = this.todoList.find( item => item.id === id );
+  return getitem;
+
   }
   
 }
