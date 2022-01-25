@@ -40,7 +40,6 @@ export class TodoCreate {
         console.log(this.route.snapshot.params['id']);
        let result= this.todoService.getCurrentData(this.route.snapshot.params['id']);
        console.log(result);
-       
       }
 
       // setControlValue(control: string, value: string) {
