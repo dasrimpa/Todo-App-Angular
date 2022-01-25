@@ -12,7 +12,7 @@ import { TodoService } from '../services/todo.service';
 export class TodoCreate implements OnInit {
        profileForm: FormGroup;
        isSubmitted: boolean;
-       id: number|  undefined;
+       id: string|  undefined;
        
        constructor(
          private fb :FormBuilder,
@@ -23,28 +23,33 @@ export class TodoCreate implements OnInit {
          this.isSubmitted=false;
          this.profileForm=this.fb.group({
            title : ['',[Validators.required]],
+           id :['']
          });
        }
 
        ngOnInit() {
         console.log(this.route.snapshot.params['id']);
-      let id=this.route.snapshot.params['id'];
-       let todo= this.todoService.getCurrentData(id);
+      this.id=  this.route.snapshot.params['id'];
+      if(this.id){
+       const todo= this.todoService.getCurrentData(this.id);
+       if(todo){
        console.log(todo);
        this.profileForm.patchValue(todo);
+       }
+      }
       }
       
       onSubmit(value: Todo){
         console.log(value,this.profileForm);
         this.isSubmitted = true;
         if(!this.profileForm.invalid && !this.id){
-          this.todoService.addTodo(this.profileForm.value.title);
+          this.todoService.addTodo(value);
           localStorage.setItem('myData', this.profileForm.value.title);
          this.isSubmitted =false;
          this.router.navigate(['../displaytodo']);
         }
         else if(!this.profileForm.invalid && this.id){
-        this.todoService.updateTodo(this.profileForm.value.title)
+        this.todoService.updateTodo(value)
         }
       }
   

@@ -19,8 +19,8 @@ export class TodoDisplay implements OnInit {
      this.todoList=this.todoService.todoList;
    }
  
-  deleteTodo(id:number){  
-    this.todoList = this.todoList.filter((value , i) => i !==id);
+  deleteTodo(id:string){  
+    this.todoList = this.todoList.filter(t => t.id !==id);
   }  
    
    }

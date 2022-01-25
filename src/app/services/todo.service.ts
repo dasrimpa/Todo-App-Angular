@@ -1,6 +1,6 @@
 import { Todo } from './../interface/Todo';
 import { Injectable } from '@angular/core';
-import { Todo } from '../interface/Todo';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -9,38 +9,28 @@ import { Todo } from '../interface/Todo';
 export class TodoService {
 
   todoList: Todo[] = [
-    {
-      id: 1,
-      title: 'Task 1',
-      isCompleted: false,
-    },
-
-    {
-      id: 2,
-      title: 'Task 2',
-      isCompleted: false,
-    },
   ];
-  title: any;
+  title :any;
 
-  addTodo(title:string) {
-    let id = this.todoList;
-    const item: Todo = {
-      id: Math.floor(Math.random() * 1000),
-      isCompleted: false,
-       title:title
-    }
-    this.todoList.push(item);
+  addTodo(todo: Todo) {
+   
+    todo = {
+      ...todo,
+      id: uuidv4(),
   }
-  updateTodo(id: number){
-    let title = this.todoList[id].title;
-    let result = title;
-    if (result !== null){
-      this.todoList[id].title = result;
-    }
+    this.todoList.push(todo);
   }
-  getCurrentData(id:number) {
-  //   // return this.todoList.find();
+  updateTodo(todo: Todo){
+    const index= this.todoList.findIndex( t => t.id === todo.id );
+    if(index !== -1){
+      this.todoList[index]= todo;
+    }
+    else{
+      console.log("error");
+    }
+   
+  }
+  getCurrentData(id: string) {
   const getitem = this.todoList.find( item => item.id === id );
   return getitem;
 
