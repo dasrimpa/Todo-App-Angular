@@ -10,16 +10,15 @@ export class TodoService {
 
   todoList: Todo[] = [
   ];
-  title :any;
 
   addTodo(todo: Todo) {
-   
     todo = {
       ...todo,
       id: uuidv4(),
   }
     this.todoList.push(todo);
   }
+  
   updateTodo(todo: Todo){
     const index= this.todoList.findIndex( t => t.id === todo.id );
     if(index !== -1){

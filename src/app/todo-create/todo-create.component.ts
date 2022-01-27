@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Todo } from '../interface/Todo';
 import { TodoService } from '../services/todo.service';
+import { ApiService } from '../services/api.service';
+
 @Component({
     selector: 'app-profile-editor',
     templateUrl: './todo-create.component.html',
@@ -10,6 +12,7 @@ import { TodoService } from '../services/todo.service';
   })
 
 export class TodoCreate implements OnInit {
+
        profileForm: FormGroup;
        isSubmitted: boolean;
        id: string|  undefined;
@@ -18,15 +21,16 @@ export class TodoCreate implements OnInit {
          private fb :FormBuilder,
          public todoService :TodoService,
          private router: Router,
-         private route:ActivatedRoute
+         private route:ActivatedRoute,
+         private apiService:ApiService
        ) { 
          this.isSubmitted=false;
          this.profileForm=this.fb.group({
            title : ['',[Validators.required]],
            id :['']
          });
-       }
-
+       
+      }
        ngOnInit() {
         console.log(this.route.snapshot.params['id']);
       this.id=  this.route.snapshot.params['id'];
@@ -39,18 +43,20 @@ export class TodoCreate implements OnInit {
       }
       }
       
-      onSubmit(value: Todo){
+      onSubmit(value: Todo) {
         console.log(value,this.profileForm);
         this.isSubmitted = true;
         if(!this.profileForm.invalid && !this.id){
           this.todoService.addTodo(value);
-          localStorage.setItem('myData', this.profileForm.value.title);
+          this.apiService.addTodo(value);
          this.isSubmitted =false;
          this.router.navigate(['../displaytodo']);
         }
         else if(!this.profileForm.invalid && this.id){
         this.todoService.updateTodo(value)
         }
+        
+}
+        
       }
-  
-      }
+

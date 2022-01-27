@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TodoCreate } from './todo-create/todo-create.component';
 import { FormsModule } from '@angular/forms'
 import { TodoDisplay } from './todo-display/todo-display.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TodoDisplay } from './todo-display/todo-display.component';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

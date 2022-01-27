@@ -1,5 +1,6 @@
+import { TodoService } from './../services/todo.service';
+import { ApiService } from './../services/api.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { TodoService } from '../services/todo.service';
 import { Todo } from '../interface/Todo';
 
 @Component({
@@ -10,18 +11,22 @@ import { Todo } from '../interface/Todo';
 export class TodoDisplay implements OnInit {
 
    @Input() todoInput: Todo | undefined;
+   result: Todo[] =[];
    todoList: Todo[] =[];
+
    toasterService: any;
  
-   constructor(public todoService: TodoService) { }
+   constructor(public apiService:ApiService,
+    public todoService:TodoService) { }
  
    ngOnInit(): void {
      this.todoList=this.todoService.todoList;
+  
    }
- 
-  deleteTodo(id:string){  
-    this.todoList = this.todoList.filter(t => t.id !==id);
-  }  
+   deleteTodo(id: string): void {
+    this.todoList = this.todoList.filter((todo) => todo.id !== id);
+    console.log(this.todoList);
+  }
    
    }
 
