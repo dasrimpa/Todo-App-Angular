@@ -1,7 +1,8 @@
 import { TodoService } from './../services/todo.service';
 import { ApiService } from './../services/api.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Todo } from '../interface/Todo';
+
 
 @Component({
   selector: 'app-todo-list',
@@ -10,11 +11,7 @@ import { Todo } from '../interface/Todo';
 })
 export class TodoDisplay implements OnInit {
 
-   @Input() todoInput: Todo | undefined;
-   result: Todo[] =[];
    todoList: Todo[] =[];
-
-   toasterService: any;
  
    constructor(public apiService:ApiService,
     public todoService:TodoService) { }

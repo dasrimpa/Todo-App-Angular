@@ -1,16 +1,29 @@
-<div class="Heading">
-  <h1>Todo List</h1>
+<div class="row">
+  <div class="col-md-3">
   </div>
-<div class="container">
-  <li class="list-group-item" *ngFor="let todo of todoList">
-    <div class="form-check d-inline">
-        <label for="complete" class="form-check-label lead">{{todo.title}} </label>
-    </div>
-    <div class="float-right">
-      <ul key="{todoList.id}">
-      <button class="btn btn-success btn-sm mx-3" routerLink="/edit/{{todo.id}}">Edit</button>
-        <button class="btn btn-danger btn-sm mx-3" (click)="deleteTodo(todo.id)">Delete</button>
-        </ul>
-    </div>
-</li>
+  <div class="col-md-6">
+      <table class="table">
+          <thead class="table-light">
+              <tr>
+                <th>Id</th>
+                  <th>Todo Name</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let todo of todoList">
+                <td>{{todo.id}}</td>
+                  <td>{{ todo.title }}</td>
+                  <td>
+                    <button class="btn btn-success btn-sm mx-3" routerLink="/edit/{{todo.id}}">Edit</button>
+                </td>
+
+                  <td>
+                    <button class="btn btn-danger btn-sm mx-3" (click)="deleteTodo(todo.id)">Delete</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
 </div>

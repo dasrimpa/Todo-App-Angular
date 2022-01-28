@@ -10,6 +10,7 @@ import { TodoCreate } from './todo-create/todo-create.component';
 import { FormsModule } from '@angular/forms'
 import { TodoDisplay } from './todo-display/todo-display.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {HttpClientModule} from '@angular/common/http';
     NgbModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

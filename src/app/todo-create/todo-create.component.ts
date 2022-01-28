@@ -22,7 +22,7 @@ export class TodoCreate implements OnInit {
          public todoService :TodoService,
          private router: Router,
          private route:ActivatedRoute,
-         private apiService:ApiService
+         public apiService:ApiService
        ) { 
          this.isSubmitted=false;
          this.profileForm=this.fb.group({
@@ -33,7 +33,7 @@ export class TodoCreate implements OnInit {
       }
        ngOnInit() {
         console.log(this.route.snapshot.params['id']);
-      this.id=  this.route.snapshot.params['id'];
+        this.id=  this.route.snapshot.params['id'];
       if(this.id){
        const todo= this.todoService.getCurrentData(this.id);
        if(todo){
@@ -53,9 +53,9 @@ export class TodoCreate implements OnInit {
          this.router.navigate(['../displaytodo']);
         }
         else if(!this.profileForm.invalid && this.id){
-        this.todoService.updateTodo(value)
-        }
-        
+        this.todoService.updateTodo(value);
+        this.router.navigate(['../displaytodo']);
+        }  
 }
         
       }
