@@ -1,13 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Todo } from '../interface/Todo';
  
 @Injectable({providedIn:'root'})
 
 export class ApiService {
-  todoList: Todo[] = [
-  ];
   baseURL: string = '';
  
   constructor(private http: HttpClient) {
@@ -23,24 +21,28 @@ export class ApiService {
    };
 
   getTodoList(): Observable<Todo[]> {
-    console.log('getTodoList '+this.baseURL + '/todo');
-    return this.http.get<Todo[]>(this.baseURL + '/todo')
+    return this.http.get(this.baseURL + '/classes/todo',this.Api)
+    .pipe(
+      map((data: any) => data.results),
+      map((list: Array<any>) => list.map(i => {
+        delete i.createdAt;
+        return i;
+      }))
+    );
   }
 
-  addTodo(value:Todo) {
-    const result=JSON.stringify(value);
-    console.log(result)
-    return this.http.post(this.baseURL+'/classes/todo',value,this.Api);
-  
+  addTodo(title:string) {
+    return this.http.post(this.baseURL+'/classes/todo',title,this.Api).subscribe
+    (data=>console.log(JSON.stringify(data)));
+    
 }
 
-  deleteTodo(id: string) {
-    const headers = { 
-      'content-type': 'application/json',
-      'Accept': 'application/json',
-      'X-Parse-Application-Id':'tsQEu2ydnrrLYEy0DM7sn9yXguje2o8ItfRZiAZt',
-      'X-Parse-REST-API-Key':'unAdWV97UJPbN4VI71CFreyFiABmtrm37ln2TJoQ'}  
-   
-    return this.http.delete(`${this.baseURL}/${id}`, {'headers': headers});
+  deleteTodo(objectId:string) {
+    return this.http.delete(this.baseURL+`/classes/todo/${objectId}`, this.Api);
+  
   }
+  updateTodo(title: Todo): Observable<Todo> {
+    return this.http.patch<Todo>(`${this.baseURL}/${title.objectId}`, title);
+  }
+
 }

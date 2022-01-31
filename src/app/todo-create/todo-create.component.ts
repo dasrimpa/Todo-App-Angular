@@ -23,6 +23,7 @@ export class TodoCreate implements OnInit {
          private router: Router,
          private route:ActivatedRoute,
          public apiService:ApiService
+
        ) { 
          this.isSubmitted=false;
          this.profileForm=this.fb.group({
@@ -44,16 +45,18 @@ export class TodoCreate implements OnInit {
       }
       
       onSubmit(value: Todo) {
+    
         console.log(value,this.profileForm);
         this.isSubmitted = true;
         if(!this.profileForm.invalid && !this.id){
           this.todoService.addTodo(value);
-          this.apiService.addTodo(value);
+          // this.apiService.addTodo(value);
          this.isSubmitted =false;
          this.router.navigate(['../displaytodo']);
         }
         else if(!this.profileForm.invalid && this.id){
         this.todoService.updateTodo(value);
+        this.apiService.updateTodo(value);
         this.router.navigate(['../displaytodo']);
         }  
 }
