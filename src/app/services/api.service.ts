@@ -7,6 +7,7 @@ import { Todo } from '../interface/Todo';
 
 export class ApiService {
   baseURL: string = '';
+  objectId: string |undefined;
  
   constructor(private http: HttpClient) {
     this.baseURL="https://parseapi.back4app.com";
@@ -30,6 +31,10 @@ export class ApiService {
       }))
     );
   }
+  getTodo(objectId:string) {
+    return this.http.get(this.baseURL + `/classes/todo/${objectId}`,this.Api);
+   
+  }
 
   addTodo(title:string) {
     return this.http.post(this.baseURL+'/classes/todo',title,this.Api).subscribe
@@ -41,8 +46,8 @@ export class ApiService {
     return this.http.delete(this.baseURL+`/classes/todo/${objectId}`, this.Api);
   
   }
-  updateTodo(title: Todo): Observable<Todo> {
-    return this.http.patch<Todo>(`${this.baseURL}/${title.objectId}`, title);
+  updateTodo(objectId:string ) {
+    return this.http.put(this.baseURL+`/classes/todo/${objectId}`,this.Api).subscribe
+    (data=>console.log(JSON.stringify(data)));
   }
-
 }

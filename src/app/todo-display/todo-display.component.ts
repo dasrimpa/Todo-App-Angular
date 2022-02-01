@@ -2,7 +2,6 @@ import { Todo } from './../interface/Todo';
 import { TodoService } from './../services/todo.service';
 import { ApiService } from './../services/api.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Component({

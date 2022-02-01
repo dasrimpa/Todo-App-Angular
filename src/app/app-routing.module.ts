@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: 'addtodo', component: TodoCreate },
   { path: 'displaytodo', component: TodoDisplay },
-  {path: 'edit/:id', component: TodoCreate}
+  {path: 'edit/:objectId', component: TodoCreate}
 ];
 
 @NgModule({
