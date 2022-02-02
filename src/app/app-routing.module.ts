@@ -1,12 +1,14 @@
+import { SignupComponent } from './auth/signup/signup.component';
 import { TodoDisplay } from './todo-display/todo-display.component';
 import { TodoCreate } from './todo-create/todo-create.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'addtodo', component: TodoCreate },
-  { path: 'displaytodo', component: TodoDisplay },
-  {path: 'edit/:objectId', component: TodoCreate}
+  { path: 'add-todo', component: TodoCreate },
+  { path: 'display-todo', component: TodoDisplay },
+  {path: 'edit/:objectId', component: TodoCreate},
+  {path: 'signup', component: SignupComponent}
 ];
 
 @NgModule({

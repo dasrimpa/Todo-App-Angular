@@ -1,3 +1,4 @@
+import { SignupComponent } from './signup/signup.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -16,7 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [
     AppComponent,
     TodoCreate,
-    TodoDisplay
+    TodoDisplay,
+   SignupComponent
   ],
   imports: [
     BrowserModule,
