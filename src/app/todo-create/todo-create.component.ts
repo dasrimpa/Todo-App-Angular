@@ -15,6 +15,7 @@ export class TodoCreate implements OnInit {
   isSubmitted: boolean;
   id: string | undefined;
   objectId: string | undefined;
+  isSuccessful = false;
 
   constructor(
     private fb: FormBuilder,
@@ -54,6 +55,7 @@ export class TodoCreate implements OnInit {
         .addTodo(formValue)
         .subscribe((data) => console.log(JSON.stringify(data)));
       this.isSubmitted = false;
+
       this.router.navigate(['../display-todo']);
     } else if (!this.profileForm.invalid && this.objectId) {
       // this.todoService.updateTodo(title);

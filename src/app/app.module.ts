@@ -1,4 +1,3 @@
-import { SignupComponent } from './signup/signup.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -12,13 +11,16 @@ import { FormsModule } from '@angular/forms'
 import { TodoDisplay } from './todo-display/todo-display.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoCreate,
     TodoDisplay,
-   SignupComponent
+    SignUpComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

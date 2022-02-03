@@ -1,0 +1,56 @@
+<div class="container">
+  <form
+    *ngIf="!isLoggedIn"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+  >
+    <div class="heading"><h2>Login</h2></div>
+    <div class="form-outline mb-4">
+      <input
+        type="email"
+        placeholder="Enter Email Address"
+        class="form-control"
+        name="username"
+        [(ngModel)]="form.username"
+        required
+        #username="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="username.errors && f.submitted"
+      >
+        Username is required!
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input
+        type="password"
+        placeholder="Enter Password"
+        class="form-control"
+        name="password"
+        [(ngModel)]="form.password"
+        required
+        minlength="6"
+        #password="ngModel"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="password.errors && f.submitted"
+      >
+        <div *ngIf="password.errors">Password is required</div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mb-4">
+      Sign Up
+    </button>
+
+    <div class="text-center" *ngIf="isLoggedIn">
+      <p>Do not have an account?<a routerLink="sign-up"> SignUp</a></p>
+    </div>
+  </form>
+</div>

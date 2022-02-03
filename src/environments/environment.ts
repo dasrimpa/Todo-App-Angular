@@ -4,6 +4,12 @@
 
 export const environment = {
   production: false,
+  configuration: {
+    'Content-Type': 'application/json',
+    'X-Parse-Application-Id': ' tsQEu2ydnrrLYEy0DM7sn9yXguje2o8ItfRZiAZt',
+    'X-Parse-REST-API-Key': ' unAdWV97UJPbN4VI71CFreyFiABmtrm37ln2TJoQ',
+  },
+  apiBaseUrl: 'https://parseapi.back4app.com',
 };
 
 /*

@@ -1,0 +1,62 @@
+<div class="container">
+  <form
+    *ngIf="!isSuccessful"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit()"
+    #f="ngForm"
+  >
+    <div class="heading"><h2>Create Account</h2></div>
+    <div class="form-outline mb-4">
+      <input
+        type="email"
+        placeholder="Enter Email Address"
+        name="username"
+        [(ngModel)]="form.username"
+        required
+        minlength="5"
+        #username="ngModel"
+        class="form-control"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="username.errors && f.submitted"
+      >
+        Username is required!
+      </div>
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="username.errors && f.submitted"
+      >
+        Username is required!
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input
+        type="password"
+        placeholder="Enter Password"
+        name="password"
+        [(ngModel)]="form.password"
+        required
+        #password="ngModel"
+        class="form-control"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="password.errors && f.submitted"
+      >
+        <div *ngIf="password.errors">Password is required</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block mb-4">
+      Sign Up
+    </button>
+
+    <div class="text-center" *ngIf="isSuccessful">
+      <p>Already have an account? <a href="#!">SignIn</a></p>
+    </div>
+  </form>
+</div>

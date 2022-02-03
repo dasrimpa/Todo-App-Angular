@@ -14,7 +14,6 @@ export class ApiService {
   todoData: Todo[] = [];
 
   headers = {
-    
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -35,13 +34,14 @@ export class ApiService {
     );
   }
   getTodo(objectId: string) {
-    return this.http.get(this.baseURL + `/classes/todo/${objectId}`, this.headers);
+    return this.http.get(
+      this.baseURL + `/classes/todo/${objectId}`,
+      this.headers
+    );
   }
 
   addTodo(todo: Todo) {
-    return this.http
-      .post(this.baseURL + '/classes/todo', todo, this.headers);
-      
+    return this.http.post(this.baseURL + '/classes/todo', todo, this.headers);
   }
 
   deleteTodo(objectId: string) {
@@ -51,7 +51,10 @@ export class ApiService {
     );
   }
   updateTodo(todo: Todo) {
-    return this.http
-      .put(this.baseURL + `/classes/todo/${todo.objectId}`, todo, this.headers);
+    return this.http.put(
+      this.baseURL + `/classes/todo/${todo.objectId}`,
+      todo,
+      this.headers
+    );
   }
 }
