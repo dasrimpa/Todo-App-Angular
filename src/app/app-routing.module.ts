@@ -9,14 +9,14 @@ import { AuthGuard } from './auth/Auth-Guard/auth-guard';
 const routes: Routes = [
   { path: 'add-todo', component: TodoCreate, canActivate: [AuthGuard] },
   { path: 'display-todo', component: TodoDisplay, canActivate: [AuthGuard] },
-  {path: 'edit/:objectId', component: TodoCreate, canActivate: [AuthGuard]},
-  {path: 'sign-up', component: SignUpComponent},
-  {path: 'sign-in', component: SignInComponent}
+  { path: 'edit/:objectId', component: TodoCreate, canActivate: [AuthGuard] },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'sign-in', component: SignInComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
