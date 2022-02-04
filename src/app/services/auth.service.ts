@@ -39,4 +39,9 @@ export class AuthService {
       this.headers
     );
   }
+  getToken(){
+    return this.http.get(this.baseURL +'/users',this.headers).pipe(
+      map((data: any) => data.results),
+    );
+  }
 }

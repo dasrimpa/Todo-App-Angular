@@ -15,11 +15,14 @@ export class SignInComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.getToken().subscribe((data=>
+      console.log(data))
+    )
+  }
 
   onSubmit(): void {
     const { username, password } = this.form;
@@ -30,6 +33,7 @@ export class SignInComponent implements OnInit {
       this.isLoggedIn = true;
       alert('Login Successfully');
       this.router.navigate(['../display-todo']);
+      
     });
   }
 }
