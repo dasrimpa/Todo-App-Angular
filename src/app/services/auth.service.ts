@@ -1,13 +1,19 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   baseURL: string = '';
+  public user :any;
 
   constructor(private http: HttpClient) {
     this.baseURL = 'https://parseapi.back4app.com';
+
+    const user=localStorage.getItem('user');
+    if(user){
+      this.user = user ? JSON.parse(user) : null;
+    }
   }
 
   headers = {
@@ -39,9 +45,11 @@ export class AuthService {
       this.headers
     );
   }
-  getToken(){
+  getUser(){
     return this.http.get(this.baseURL +'/users',this.headers).pipe(
       map((data: any) => data.results),
+      tap(data=>console.log(data)),
+      tap(data=>localStorage.setItem('user',JSON.stringify(data))),
     );
   }
 }

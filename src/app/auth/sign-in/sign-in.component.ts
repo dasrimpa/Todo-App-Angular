@@ -19,9 +19,7 @@ export class SignInComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    this.authService.getToken().subscribe((data=>
-      console.log(data))
-    )
+    this.authService.getUser().subscribe((data) => console.log(data));
   }
 
   onSubmit(): void {
@@ -33,7 +31,6 @@ export class SignInComponent implements OnInit {
       this.isLoggedIn = true;
       alert('Login Successfully');
       this.router.navigate(['../display-todo']);
-      
     });
   }
 }

@@ -21,7 +21,7 @@
         role="alert"
         *ngIf="username.errors && f.submitted"
       >
-        Username is required!
+        Email Address is required!
       </div>
     </div>
 
@@ -33,7 +33,6 @@
         name="password"
         [(ngModel)]="form.password"
         required
-        minlength="6"
         #password="ngModel"
       />
       <div
@@ -46,11 +45,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary btn-block mb-4">
-      Sign Up
+      Sign In
     </button>
-
-    <div class="text-center" *ngIf="isLoggedIn">
-      <p>Do not have an account?<a routerLink="sign-up"> SignUp</a></p>
-    </div>
   </form>
 </div>

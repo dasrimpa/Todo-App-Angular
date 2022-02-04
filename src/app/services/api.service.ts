@@ -6,7 +6,6 @@ import { Todo } from '../interface/Todo';
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   baseURL: string = '';
-  objectId: string | undefined;
 
   constructor(private http: HttpClient) {
     this.baseURL = 'https://parseapi.back4app.com';
