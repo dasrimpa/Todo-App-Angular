@@ -13,17 +13,24 @@
         name="username"
         [(ngModel)]="form.username"
         required
-        minlength="5"
+        pattern="^([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)$"
         #username="ngModel"
         class="form-control"
       />
       <div
         class="alert alert-danger"
         role="alert"
-        *ngIf="username.errors && f.submitted"
+        *ngIf="username.errors?.['required'] && f.submitted"
       >
-        Email Address is required and pattern should be xyz@xyz.com
+        Email Address is required
       </div>
+      <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="username.errors?.['pattern'] && f.submitted"
+    >
+      Email pattern should be xyz@xyz.com
+    </div>
     </div>
 
     <div class="form-outline mb-4">
@@ -33,16 +40,24 @@
         name="password"
         [(ngModel)]="form.password"
         required
+        minlength="5"
         #password="ngModel"
         class="form-control"
       />
       <div
         class="alert alert-danger"
         role="alert"
-        *ngIf="password.errors && f.submitted"
+        *ngIf="password.errors?.['required'] && f.submitted"
       >
-        <div *ngIf="password.errors">Password is required</div>
+       Password is required
       </div>
+      <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="password.errors?.['minlength'] && f.submitted"
+    >
+    Password must be at least 5 characters long.
+    </div>
     </div>
     <button type="submit" class="btn btn-primary btn-block mb-4">
       Sign Up

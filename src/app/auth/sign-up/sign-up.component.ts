@@ -39,7 +39,8 @@ export class SignUpComponent implements OnInit {
       (err) => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
-        alert('Account Already Exit');
+        console.log(err);
+        alert('Account already exists for this username.');
       }
     );
   }

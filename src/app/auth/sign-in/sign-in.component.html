@@ -14,12 +14,13 @@
         name="username"
         [(ngModel)]="form.username"
         required
+        pattern="^([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)$"
         #username="ngModel"
       />
       <div
         class="alert alert-danger"
         role="alert"
-        *ngIf="username.errors && f.submitted"
+        *ngIf="username.errors?.['required'] && f.submitted"
       >
         Email Address is required!
       </div>
@@ -38,9 +39,9 @@
       <div
         class="alert alert-danger"
         role="alert"
-        *ngIf="password.errors && f.submitted"
+        *ngIf="password.errors?.['required'] && f.submitted"
       >
-        <div *ngIf="password.errors">Password is required</div>
+        Password is required
       </div>
     </div>
 
