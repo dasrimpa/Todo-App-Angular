@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 
 const routes: Routes = [
-  { path: 'add-todo', component: TodoCreate, canActivate: [AuthGuard] },
+  { path: 'add-todo', component: TodoCreate, canActivate: [AuthGuard],data: { breadcrumb: 'Home'} },
   { path: 'display-todo', component: TodoDisplay, canActivate: [AuthGuard] },
   { path: 'edit/:objectId', component: TodoCreate, canActivate: [AuthGuard] },
   { path: 'sign-up', component: SignUpComponent },

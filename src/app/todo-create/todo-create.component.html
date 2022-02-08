@@ -1,23 +1,36 @@
+<div class="form">
 <div class="heading">
-  <h1><span *ngIf="this.objectId">Update Todo</span><span *ngIf="!this.objectId">Todo Create</span></h1>
-  <form [formGroup]="profileForm" (submit)="onSubmit(profileForm.value)">
+  <h1>
+    <span *ngIf="this.objectId">Todo Edit</span
+    ><span *ngIf="!this.objectId">Todo Create</span>
+  </h1>
+  <form
+    [formGroup]="profileForm"
+    *ngIf="!isSubmitted"
+    name="form"
+    (ngSubmit)="f.form.valid && onSubmit(profileForm.value)"
+    #f="ngForm"
+  >
     <div class="name">
-      <label for="name">Task Name: </label>
-      <input id="name" type="text" formControlName="title" />
+      <label for="name">Task Name </label>
+      <input id="name" type="text" formControlName="title"/>
       <div
         *ngIf="
-          profileForm.controls['title'].invalid &&
-          profileForm.controls['title'].touched
+          profileForm.controls['title'].invalid && f.submitted
         "
         class="alert alert-danger"
       >
-        <div *ngIf="profileForm.controls['title'].errors?.['required']">
+        <div *ngIf="profileForm.controls['title'].errors?.['required'] && f.submitted">
           Input field required
         </div>
       </div>
     </div>
     <div class="btn">
-      <button class="add-btn" [disabled]="!profileForm.valid"><span *ngIf="this.objectId">Update</span><span *ngIf="!this.objectId">Create</span></button>
+      <button class="add-btn">
+        <span *ngIf="this.objectId">Update</span
+        ><span *ngIf="!this.objectId">Create</span>
+      </button>
     </div>
   </form>
+</div>
 </div>

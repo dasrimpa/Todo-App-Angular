@@ -1,5 +1,18 @@
+<div class="input-group">
+  <input type="text"  [(ngModel)]="term" class="form-control" placeholder="Search todo Item">
+  <div class="input-group-append">
+    <button class="btn btn-secondary" type="button">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+</div>
+<div class="heading">
+<h1>Todo List</h1>
+</div>
 <div class="row">
+ 
   <div class="col-md-3"></div>
+  
   <div class="col-md-6">
     <table class="table">
       <thead class="table-light">
@@ -11,45 +24,33 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let todo of todoList">
+        <tr *ngFor="let todo of todoList | paginate: { itemsPerPage: 5, currentPage: p } | filter:term">
           <td>{{ todo.objectId }}</td>
           <td>{{ todo.title }}</td>
           <td>
             <button
-              class="btn btn-success btn-sm mx-3"
+              class="btn btn-sm mx-3"
               routerLink="/edit/{{ todo.objectId }}"
             >
-              Edit
+            <i class="fas fa-edit"></i>
             </button>
           </td>
 
           <td>
             <button
-              class="btn btn-danger btn-sm mx-3"
+              class="btn btn-sm mx-3"
               (click)="removeTodo(todo.objectId)"
             >
-              Delete
+            <i class="fas fa-trash"></i>
             </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-    <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="setPage(1)">First</a>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-    </li>
-    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-        <a (click)="setPage(page)">{{page}}</a>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="setPage(pager.currentPage + 1)">Next</a>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="setPage(pager.totalPages)">Last</a>
-    </li>
-</ul>
+  <div class="col-md-12 pagination">
+    <pagination-controls (pageChange)="p = $event" class="pagination"></pagination-controls>
+  </div>
 </div>
+
+
